@@ -54,7 +54,7 @@ int Gorille :: soin()
 
 ostream& operator<<(ostream& os, const Gorille& a)
 {
-  os << "Stats Gorille" << endl;
+  os << "Stats " << a.nom << endl;
   os << "PDV : " << a.pdv << endl;
   os << "PDC : " << a.pdc << endl;
   os << "PDS : " << a.pds << endl;

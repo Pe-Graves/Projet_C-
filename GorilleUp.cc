@@ -12,10 +12,7 @@ GorilleUp :: GorilleUp()
   nom = "Gorille Up";
   pdv = 250;
   pdc = 20;
-  pds = 5;
-  pa = 3;
   armure = 15;
-  sigle = "CAC";
 }
 
 GorilleUp :: ~GorilleUp()
@@ -54,7 +51,7 @@ int GorilleUp :: soin()
 
 ostream& operator<<(ostream& os, const GorilleUp& a)
 {
-  os << "Stats Gorille Up" << endl;
+  os << "Stats " << a.nom << endl;
   os << "PDV : " << a.pdv << endl;
   os << "PDC : " << a.pdc << endl;
   os << "PDS : " << a.pds << endl;

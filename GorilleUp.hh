@@ -5,9 +5,9 @@
 #include <cstring>
 #include <cstdlib>
 
-#include "Singes.hh"
+#include "Gorille.hh"
 
-class GorilleUp : public Singes
+class GorilleUp : public Gorille
 {
 public:
   GorilleUp();

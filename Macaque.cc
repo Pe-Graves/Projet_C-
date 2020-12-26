@@ -25,7 +25,7 @@ Macaque :: ~Macaque()
 
 ostream& operator<<(ostream& os, Macaque& a)
 {
-  os << "Stats Macaque" << endl;
+  os << "Stats " << a.nom << endl;
   os << "PDV : " << a.pdv << endl;
   os << "PDC : " << a.pdc << endl;
   os << "PDS : " << a.pds << endl;

@@ -25,7 +25,7 @@ Gibon :: ~Gibon()
 
 ostream& operator<<(std :: ostream& os, const Gibon& a)
 {
-  os << "Stats Gibon" << endl;
+  os << "Stats " << a.nom << endl;
   os << "PDV : " << a.pdv << endl;
   os << "PDC : " << a.pdc << endl;
   os << "PDS : " << a.pds << endl;

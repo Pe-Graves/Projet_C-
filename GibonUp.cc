@@ -7,15 +7,11 @@
 
 using namespace std;
 
-GibonUp :: GibonUp()
+GibonUp :: GibonUp() : Gibon()
 {
   nom = "Gibon Up";
   pdv = 95;
-  pdc = 5;
-  pds = 10;
-  pa = 4;
   armure = 10;
-  sigle = "Distance";
 }
 
 GibonUp :: ~GibonUp()
@@ -25,7 +21,7 @@ GibonUp :: ~GibonUp()
 
 ostream& operator<<(std :: ostream& os, const GibonUp& a)
 {
-  os << "Stats GibonUp" << endl;
+  os << "Stats " << a.nom << endl;
   os << "PDV : " << a.pdv << endl;
   os << "PDC : " << a.pdc << endl;
   os << "PDS : " << a.pds << endl;

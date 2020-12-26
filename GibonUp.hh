@@ -5,10 +5,10 @@
 #include <cstring>
 #include <cstdlib>
 
-#include "Singes.hh"
+#include "Gibon.hh"
 
 
-class GibonUp : public Singes
+class GibonUp : public Gibon
 {
 public:
   GibonUp();

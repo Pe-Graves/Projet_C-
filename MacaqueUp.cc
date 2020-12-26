@@ -7,15 +7,11 @@
 
 using namespace std;
 
-MacaqueUp :: MacaqueUp()
+MacaqueUp :: MacaqueUp() : Macaque()
 {
-  nom = "MacaqueUp ";
+  nom = "Macaque Up";
   pdv = 60;
-  pdc = 30;
-  pds = 0;
-  pa = 4;
-  armure = 25;
-  sigle = "Distance";
+  pdc = 35;
 }
 
 MacaqueUp :: ~MacaqueUp()
@@ -25,7 +21,7 @@ MacaqueUp :: ~MacaqueUp()
 
 ostream& operator<<(ostream& os, MacaqueUp& a)
 {
-  os << "Stats MacaqueUp" << endl;
+  os << "Stats " << a.nom << endl;
   os << "PDV : " << a.pdv << endl;
   os << "PDC : " << a.pdc << endl;
   os << "PDS : " << a.pds << endl;
