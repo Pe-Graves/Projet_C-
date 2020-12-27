@@ -8,7 +8,7 @@
 #include "Singes.hh"
 
 
-class Gibon : public Singes
+class Gibon : public virtual Singes
 {
 public:
   Gibon();

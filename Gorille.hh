@@ -7,7 +7,7 @@
 
 #include "Singes.hh"
 
-class Gorille : public Singes
+class Gorille : public virtual Singes
 {
 public:
   Gorille();

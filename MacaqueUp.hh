@@ -7,7 +7,7 @@
 
 #include "Macaque.hh"
 
-class MacaqueUp : public Macaque
+class MacaqueUp : public virtual Macaque
 {
 public:
   MacaqueUp();

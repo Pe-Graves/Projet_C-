@@ -8,7 +8,7 @@
 #include "Gibon.hh"
 
 
-class GibonUp : public Gibon
+class GibonUp : public virtual Gibon
 {
 public:
   GibonUp();

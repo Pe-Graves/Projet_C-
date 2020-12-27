@@ -7,6 +7,8 @@
 #include "GibonUp.hh"
 #include "Macaque.hh"
 #include "MacaqueUp.hh"
+#include "Joueur.hh"
+#include "Equipe.hh"
 
 
 using namespace std;
@@ -49,5 +51,7 @@ int main()
     MacaqueUp f;
     cout << f << endl;
 
+    Joueur g;
+    //Equipe a;
     return 0;
 }
