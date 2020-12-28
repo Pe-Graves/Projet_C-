@@ -51,7 +51,13 @@ int main()
     MacaqueUp f;
     cout << f << endl;
 
-    Joueur g;
-    //Equipe a;
+    //Joueur g;
+
+    Equipe h;
+    cout << h << endl;
+
+    cout << "-----------------------------------------------" << endl;
+    cout << "~Destructeurs" << endl;
+    cout << endl;
     return 0;
 }

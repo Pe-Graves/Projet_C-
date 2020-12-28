@@ -11,14 +11,15 @@
 #include "GorilleUp.hh"
 #include "Joueur.hh"
 
-class Equipe : public GibonUp, GorilleUp, MacaqueUp, Joueur
+class Equipe : public Joueur
 {
 public:
   Equipe();
   ~Equipe();
 
-  //friend std :: ostream& operator<<(std :: ostream& os, std :: vector<Singes>& vecteur);
+  friend std :: ostream& operator<<(std :: ostream& os, Equipe& a);
 
 protected:
-  std :: vector<Singes> equipe;
+  std :: vector<std :: string> equipeUp;
+  std :: vector<std :: string> equipe;
 };

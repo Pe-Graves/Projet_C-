@@ -78,6 +78,7 @@ Joueur :: Joueur()
     }
   }
   cout << "Fin de la création du joueur" << endl;
+  cout << endl;
 }
 
 Joueur :: ~Joueur()
