@@ -14,7 +14,17 @@ Gorille :: Gorille() : Singe()
 	pdv = 120;
 }	
 
+Gorille :: Gorille(string nomSinge)
+{
+	nom = nomSinge;
+	sigle = "CAC";
+	armure = 20;
+	pds = 5;
+	pdv = 120;
+}
+
 Gorille :: ~Gorille()
 {
-	cout << "~Gorille()" << endl;
+	/*cout << "~Gorille()" << endl;
+	cout << endl;*/
 }

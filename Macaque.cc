@@ -16,7 +16,18 @@ Macaque ::  Macaque() : Singe()
 
 }
 
+Macaque :: Macaque(string nomSinge)
+{
+	nom = nomSinge;
+	sigle = "CAC";
+	pdc = 25;
+	armure = 15;
+	pds = 3;
+	pdv = 110;
+}
+
 Macaque :: ~Macaque()
 {
-	cout << "~Macaque()" << endl;
+	/*cout << "~Macaque()" << endl;
+	cout << endl;*/
 }

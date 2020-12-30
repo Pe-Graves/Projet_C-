@@ -9,5 +9,6 @@ class Gibon : public virtual Singe
 {
 public:
 	Gibon();
+	Gibon(std :: string nomSinge);
 	~Gibon();
 };

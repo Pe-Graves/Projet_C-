@@ -15,7 +15,18 @@ Gibon :: Gibon()
 	pds = 7;
 }
 
+Gibon :: Gibon(string nomSinge)
+{
+	nom = nomSinge;
+	sigle = "Distance";
+	armure = 5;
+	pdv = 80;
+	pdc = 12;
+	pds = 7;
+}
+
 Gibon :: ~Gibon()
 {
-	cout << "~Gibon()" << endl;
+	/*cout << "~Gibon()" << endl;
+	cout << endl;*/
 }

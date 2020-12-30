@@ -9,5 +9,6 @@ class Gorille : public virtual Singe
 {
 public:
 	Gorille();
+	Gorille(std :: string nomSinge);
 	~Gorille();
 };

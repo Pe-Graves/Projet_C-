@@ -20,7 +20,8 @@ Singe :: Singe()
 
 Singe :: ~Singe()
 {
-	cout << "~Singe()" << endl;
+	/*cout << "~Singe()" << endl;
+	cout << endl;*/
 }
 
 void Singe :: combat(Singe& adversaire)

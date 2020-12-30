@@ -9,5 +9,6 @@ class Macaque : public virtual Singe
 {
 public:
 	Macaque();
+	Macaque(std :: string nomSinge);
 	~Macaque();
 };
