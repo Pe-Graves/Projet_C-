@@ -2,8 +2,7 @@
 #include <string>
 #include <vector>
 
-#include "Joueur.hh"
-#include "Singe.hh"
+#include "Jeu.hh"
 
 using namespace std;
 
@@ -98,42 +97,10 @@ int main()
 	cout << "---------------------------------------------" << endl;
 	cout << "Déconstructeurs" << endl;*/
 
-	static int numero = 1;
-	int nbJoueur;
-	int valeur;
-	int flag = 0;
-	bool etat;
-	string nomJoueur;
-	string nomSinge;
-    string mot;
-    vector<Joueur> tab;
-    vector<Singe> singe;
     
-
-    cout << "  ~~~~~~~~~~ ! BIENVENUE DANS LE SINGE GAME ! ~~~~~~~~~~" << endl;
-    cout << endl;
-    cout << "Les règles sont les suivantes :" << endl;
-    cout << "- On vous attribue une somme de départ de manière aléatoire" << endl;
-    cout << "- Vous pouvez parier sur un singe et augmenter votre somme à chaque tour" << endl;
-    cout << "- Plus vous misez, plus vous gagnez (c'est logique)" << endl;
-    cout << "- Le but : Avoir le plus d'argent à la fin de la partie" << endl;
-    cout << "           Ou bien que vos adversaires n'aient plus d'argent" << endl;
-    cout << endl;
-    cout << "Vous êtes prêts ? .......... Ça commence !!!!" << endl;
-
-    cout << endl;
     
-    cout << "Tout d'abord veuillez choisir le nombre de participants : ";    
-
-    cin >> nbJoueur;
-
-    for(int i = 0; i < nbJoueur; i++)
-    {
-        nomJoueur = "Joueur_" + to_string(numero);
-        tab.push_back(Joueur(nomJoueur));
-        numero ++;
-    }	
-
+	
+/*
     while(1)
     {
     	if(tab.size() == 0)
@@ -229,11 +196,11 @@ int main()
     		singe[i].combat(singe[i-1]);
     		cout << singe[i];
     	}
-    	/*for(size_t i = 1; i < singe.size(); i++)
-    	{
-    		cout << singe[i];
-    	}*/
+ 
     }
+*/
 
+	Jeu a;
+	a.jouer();
     return 0;
 }

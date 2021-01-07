@@ -1,41 +1,69 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <string>
 
 class Singe
 {
 public:
-	Singe();
-	~Singe();
+	Singe(const std :: string pnom, const std :: string psigle, const int ppdv, const std :: size_t ppdc, 
+		  const std :: size_t ppds, const std :: size_t parmure, const std :: size_t ppa)
+	{
+		pdv = ppdv;
+		pdc = ppdc;
+		pds = ppds;
+		armure = parmure;
+		pa = ppa;
+		nom = pnom;
+		sigle = psigle;
+	};
 
-	void combat(Singe& adversaire);
-	void soin(Singe& a);
-	void soin();
-	bool vie() const;
-	void resetPA();
+	virtual ~Singe(){};
 
+	virtual void combat(Singe& adversaire) = 0;
+	virtual void soin(Singe& a) = 0;
+	virtual void soin() = 0;
+	virtual bool vie() = 0;
+	virtual void resetPA() = 0;
 
-	int getPDV(){return this -> pdv;};
-	int getPDC(){return this -> pdc;};
-	int getPDS(){return this -> pds;};
-	int getArmure(){return this -> armure;};
-	int getPA(){return this -> pa;};
+	void setPDV(const int valeur){pdv = valeur;};
+	//void setPDC(const std :: size_t valeur){pdc = valeur;};
+	//void setPDS(const std :: size_t valeur){pds = valeur;};
+	//void setPDV(const std :: size_t valeur){pdv = valeur;};
+	void setPA(const std :: size_t valeur){pa = valeur;};
 
-	std :: string getNom(){return this -> nom;};
-	std :: string getSigle(){return this -> sigle;};
+	int getPDV(){return pdv;};
+	std :: size_t getPDC(){return pdc;};
+	std :: size_t getPDS(){return pds;};
+	std :: size_t getArmure(){return armure;};
+	std :: size_t getPA(){return pa;};
 
-	friend std :: ostream& operator<<(std :: ostream& os, Singe& a);
+	std :: string getNom(){return nom;};
+	//std :: string getSigle(){return sigle;};
 
+	friend std :: ostream& operator<<(std :: ostream& os, Singe& a)
+	{
+		os << "Stats " << a.nom << std :: endl;
+	 	os << "PDV : " << a.pdv << std :: endl;
+	 	os << "PDC : " << a.pdc << std :: endl;
+		os << "PDS : " << a.pds << std :: endl;
+	 	os << "Armure : " << a.armure << std :: endl;
+	 	os << "Point d'action : " << a.pa << std :: endl;
+	 	os << "Type : " << a.sigle;
+	 	os << std :: endl;
+
+ 	return os;
+ 	};
 
 protected:
 	std :: string nom;
 	std :: string sigle;
 
 	int pdv;
-	int pdc;
-	int pds;
-	int armure;
-	int pa;
+	std :: size_t pdc;
+	std :: size_t pds;
+	std :: size_t armure;
+	std :: size_t pa;
 
 
 };

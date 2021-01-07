@@ -1,5 +1,9 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <cstring>
+#include <vector>
+#include <cmath>
 
 #include "Joueur.hh"
 
@@ -12,11 +16,8 @@ Joueur :: Joueur()
 	somme = rand() % 100;
 	cout << "Veuillez choisir votre nom de joueur: ";
 	cin >> name;
-	cout << endl;
-	cout << "Vous vous appelez : " << name << endl;
-	cout << endl;
-	cout << "Vous commencez avec : " << somme << endl;
-	cout << endl;
+	cout << endl << "Vous vous appelez : " << name << endl << endl;
+	cout << "Vous commencez avec : " << somme << endl << endl;
 }
 
 Joueur :: Joueur(string nomJoueur)
@@ -25,19 +26,6 @@ Joueur :: Joueur(string nomJoueur)
 	srand((unsigned int)time(0));
 	string mot;
 	somme = rand() % 100;
-	cout << "Vous vous appellez " << name << endl;
-	cout << "Voulez-vous changer de nom ? (oui/non) : ";
-	cin >> mot;
-	if(mot == "oui")
-	{
-		cout << "Veuillez choisir votre nom de joueur : ";
-		cin >> name;
-		cout << endl;
-		cout << "Vous vous appelez : " << name << endl;
-		cout << endl;	
-	}
-	cout << "Vous commencez avec : " << somme << endl;
-	cout << endl;
 }
 
 Joueur :: ~Joueur()
@@ -48,33 +36,33 @@ Joueur :: ~Joueur()
 
 void Joueur :: gain()
 {
-	if(this -> mise <= 10)
+	if(mise <= 10)
 	{
-		this -> somme += (this -> mise) * 2; 	
+		somme += mise * 2;	
 	}
-	if(this -> mise <= 30)
+	else if(mise <= 30 && mise > 10)
 	{
-		this -> somme += (this -> mise) * 3;
+		somme += mise * 3;
 	}
-	if(this -> mise <= 50)
+	else if(mise <= 50 && mise > 30)
 	{
-		this -> somme += (this -> mise) * 5;
+		  somme += mise * 5;
 	}
-	if(this -> mise <= 70)
+	else if(mise <= 70 && mise > 50)
 	{
-		this -> somme += (this -> mise) * 7;
+		  somme += mise * 7;
 	}
-	if(this -> mise <= 90)
+	else if( mise <= 90 && mise > 70)
 	{
-		this -> somme += (this -> mise) * 9;
+		 somme += mise * 9;
 	}
-	if(this -> mise < 150)
+	else if(mise < 150 && mise > 90)
 	{
-		this -> somme += (this -> mise) * 13;
+		  somme += mise * 13;
 	}
 	else
 	{
-		this -> somme += (this -> mise) * 20;
+		  somme += mise * 20;
 	}
 
 
@@ -82,26 +70,25 @@ void Joueur :: gain()
 
 void Joueur :: gagner()
 {
-	if(this -> choix.vie() == false)
+	if(choix -> vie() == false)
 	{
-		cout << "Vous avez perdu votre pari" << endl;
+		cout << "Vous avez gagné votre pari" << endl;
 	}
 }
 
 void Joueur :: perdre()
 {
-	if(this -> choix.vie() == true)
+	if(choix -> vie() == true)
 	{
-		cout << "Vous avez gagné votre pari" << endl;
+		cout << "Vous avez perdu votre pari" << endl;
 	}
 }
 
 ostream& operator<<(ostream& os, Joueur& a)
 {
 	os << "Joueur : " << a.name << endl;
-	os << "Vous avez : " << a.somme << " points" << endl;
-	os << endl;
-	os << a.choix << endl;
+	os << "Vous avez : " << a.somme << " points" << endl << endl;
+	//os << a.choix -> getNom() << endl;
 	return os;
 }
 
@@ -109,61 +96,75 @@ void Joueur :: parier(string mot)
 {
 	if(mot == "Gorille")
 	{
-		this -> choix = Gorille();
+		choix = new Gorille();
 	}
-	if(mot == "Gibon")
+	else if(mot == "Gibon")
 	{
-		this -> choix = Gibon();
+		choix = new Gibon();
 	}
-	if(mot == "Macaque")
+	else if(mot == "Macaque")
 	{
-		this -> choix = Macaque();
+		choix = new Macaque();
+	}
+	else if(mot == "Bonobo")
+	{
+		choix = new Bonobo();
+	}
+	else if(mot == "Chimpanze")
+	{
+		choix = new Chimpanze();
+	}
+	else if(mot == "aucun")
+	{}
+	else
+	{
+		cout << "Erreur" << endl << "Sur quel singe voulez-vous parier ? (ou aucun) : ";
+		cin >> mot;
+		parier(mot);
 	}
 }
 
 string Joueur :: getName() const
 {
-	return this -> name;
+	return name;
 }
 
-int Joueur :: getMise() const
+size_t Joueur :: getMise() const
 {
-	return this -> mise;
+	return mise;
 }
 
-void Joueur :: setMise(int valeur)
+void Joueur :: setMise(const size_t valeur)
 {
-	this -> mise = valeur;
+	mise = valeur;
 }
 
 
-void Joueur :: miser(int valeur)
+void Joueur :: miser(const int valeur)
 {
 	if(valeur <= somme)
 	{
 		somme -= valeur;
-		cout << endl;
-		cout << "Vous avez misé : " << valeur << endl;
-		cout << endl;
+		cout << endl << "Vous avez misé : " << valeur << endl << endl;
 	}
 	else
 	{
-		cout << "Vous n'avez pas assez pour miser !" << endl;
+		size_t valeur2;
+		cout << "Erreur" << endl << "Combien voulez-vous miser ? : ";
+		cin >> valeur2;
+		setMise(valeur2);
+		miser(mise);
 	}
 }
 
 void Joueur :: pasParier(string mot)
 {
-	if(mot == "Passer")
-	{
-		this -> choix = Singe();
-	}
-
+	cout << "Passe le tour !" << endl;
 }
 
 bool Joueur :: etatJoueur()
 {
-	if(this -> somme <= 0)
+	if(somme <= 0)
 	{
 		return false;
 	}
@@ -174,13 +175,19 @@ bool Joueur :: etatJoueur()
 }
 
 
-Singe Joueur :: getChoix() const
+Singe& Joueur :: getChoix() const
 {
-	return this -> choix;
+	return *choix;
 }
 
 
 int Joueur :: getSomme() const
 {
-	return this -> somme;
+	return somme;
 }
+
+void Joueur :: setName(const string mot)
+{
+	name = mot;
+}
+

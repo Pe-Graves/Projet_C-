@@ -5,12 +5,12 @@
 
 #include "Singe.hh"
 
-class Gorille : public Singe
+class Bonobo : public Singe
 {
 public:
-	Gorille();
-	Gorille(std :: string nomSinge);
-	~Gorille();
+	Bonobo();
+	Bonobo(std :: string nomSinge);
+	~Bonobo();
 
 	void combat(Singe& adversaire);
 	void soin(Singe& a);

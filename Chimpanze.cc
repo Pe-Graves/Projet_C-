@@ -2,17 +2,17 @@
 #include <string>
 #include <cmath>
 
-#include "Macaque.hh"
+#include "Chimpanze.hh"
 
 using namespace std;
 
-Macaque :: Macaque() : Singe("Macaque", "Tank", 150, 5, 15, 25, 6){}	
+Chimpanze :: Chimpanze() : Singe("Chimpanze", "Healer", 150, 5, 15, 25, 6){}	
 
-Macaque :: Macaque(string nomSinge) : Singe(nomSinge, "Tank", 150, 5, 15, 25, 6){}
+Chimpanze :: Chimpanze(string nomSinge) : Singe(nomSinge, "Healer", 150, 5, 15, 25, 6){}
 
-Macaque :: ~Macaque(){}
+Chimpanze :: ~Chimpanze(){}
 
-void Macaque :: combat(Singe& adversaire)
+void Chimpanze :: combat(Singe& adversaire)
 {
 	if(getPA() >= 2)
 	{
@@ -31,12 +31,12 @@ void Macaque :: combat(Singe& adversaire)
 	}
 }
 
-bool Macaque :: vie()
+bool Chimpanze :: vie()
 {
 	return getPDV() > 0;
 }
 
-void Macaque :: soin(Singe& a)
+void Chimpanze :: soin(Singe& a)
 {
 	
 	if(a.vie() == true)
@@ -50,7 +50,7 @@ void Macaque :: soin(Singe& a)
 	}
 }
 
-void Macaque :: soin()
+void Chimpanze :: soin()
 {
 	if(vie() == true)
 	{
@@ -64,7 +64,7 @@ void Macaque :: soin()
 	}
 }
 
-void Macaque :: resetPA()
+void Chimpanze :: resetPA()
 {
 	setPA(6);
 }
