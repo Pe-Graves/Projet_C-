@@ -14,7 +14,7 @@ Macaque :: ~Macaque(){}
 
 void Macaque :: combat(Singe& adversaire)
 {
-	if(getPA() >= 2)
+	while(getPA() >= 2)
 	{
 		if(adversaire.vie() == true)
 		{
@@ -25,10 +25,11 @@ void Macaque :: combat(Singe& adversaire)
 
 		else
 		{
-			cout << "Vous essayez d'attaquer un singe mort !" << endl;
+			//cout << "Vous essayez d'attaquer un singe mort !" << endl;
 		}
 
 	}
+	resetPA();
 }
 
 bool Macaque :: vie()
@@ -46,7 +47,7 @@ void Macaque :: soin(Singe& a)
 	}
 	else
 	{
-		cout << "Vous essayez d'soigner un singe mort !" << endl;
+		cout << "Vous essayez de soigner un singe mort !" << endl;
 	}
 }
 

@@ -13,6 +13,7 @@
 #include "Chimpanze.hh"
 #include "Bonobo.hh"
 #include "Singe.hh"
+#include "Aucun.hh"
 
 
 

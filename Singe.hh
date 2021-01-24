@@ -64,6 +64,4 @@ protected:
 	std :: size_t pds;
 	std :: size_t armure;
 	std :: size_t pa;
-
-
 };

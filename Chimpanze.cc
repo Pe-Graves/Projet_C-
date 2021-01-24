@@ -14,7 +14,7 @@ Chimpanze :: ~Chimpanze(){}
 
 void Chimpanze :: combat(Singe& adversaire)
 {
-	if(getPA() >= 2)
+	while(getPA() >= 2)
 	{
 		if(adversaire.vie() == true)
 		{
@@ -25,10 +25,10 @@ void Chimpanze :: combat(Singe& adversaire)
 
 		else
 		{
-			cout << "Vous essayez d'attaquer un singe mort !" << endl;
+			//cout << "Vous essayez d'attaquer un singe mort !" << endl;
 		}
-
 	}
+	resetPA();
 }
 
 bool Chimpanze :: vie()

@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Jeu.hh"
+#include "Macaque.hh"
 
 using namespace std;
 
@@ -202,5 +203,12 @@ int main()
 
 	Jeu a;
 	a.jouer();
+
+	/*Macaque a;
+	Macaque b;
+	cout << a.getPA() << endl;
+	a.combat(b);
+	cout << a.getPA() << endl;
+    */
     return 0;
 }

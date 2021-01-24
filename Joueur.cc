@@ -9,32 +9,34 @@
 
 using namespace std;
 
-Joueur :: Joueur()
+Joueur :: Joueur() // Constructeur
 {
 	srand((unsigned int)time(0));
 	string mot;
 	somme = rand() % 100;
+	choix = new Aucun();
 	cout << "Veuillez choisir votre nom de joueur: ";
 	cin >> name;
 	cout << endl << "Vous vous appelez : " << name << endl << endl;
 	cout << "Vous commencez avec : " << somme << endl << endl;
 }
 
-Joueur :: Joueur(string nomJoueur)
+Joueur :: Joueur(string nomJoueur) // Constructeur
 {
 	name = nomJoueur;
 	srand((unsigned int)time(0));
 	string mot;
+	choix = new Aucun();
 	somme = rand() % 100;
 }
 
-Joueur :: ~Joueur()
+Joueur :: ~Joueur() // Deconstructeur
 {
 	/*cout << "~Joueur()" << endl;
 	cout << endl;*/
 }
 
-void Joueur :: gain()
+void Joueur :: gain() // fonction pour attribuer le gain du joueur en cas de victoire
 {
 	if(mise <= 10)
 	{
@@ -68,7 +70,7 @@ void Joueur :: gain()
 
 }
 
-void Joueur :: gagner()
+void Joueur :: gagner() // fonction pour dire que le joueur a gagner son pari
 {
 	if(choix -> vie() == false)
 	{
@@ -76,7 +78,7 @@ void Joueur :: gagner()
 	}
 }
 
-void Joueur :: perdre()
+void Joueur :: perdre() // fonction pour dire que le joueur a perdu son pari
 {
 	if(choix -> vie() == true)
 	{
@@ -84,15 +86,15 @@ void Joueur :: perdre()
 	}
 }
 
-ostream& operator<<(ostream& os, Joueur& a)
+ostream& operator<<(ostream& os, Joueur& a) // operator pour afficher le joueur
 {
 	os << "Joueur : " << a.name << endl;
 	os << "Vous avez : " << a.somme << " points" << endl << endl;
-	//os << a.choix -> getNom() << endl;
+	os << "Votre singe : " << a.getChoix().getNom() << endl;
 	return os;
 }
 
-void Joueur :: parier(string mot)
+void Joueur :: parier(string mot) // Fonction qui permet de donner un singe au joueur ou aucun
 {
 	if(mot == "Gorille")
 	{
@@ -115,56 +117,58 @@ void Joueur :: parier(string mot)
 		choix = new Chimpanze();
 	}
 	else if(mot == "aucun")
-	{}
+	{
+		choix =  new Aucun();
+	}
 	else
 	{
-		cout << "Erreur" << endl << "Sur quel singe voulez-vous parier ? (ou aucun) : ";
+		cout << "Sur quel singe voulez-vous parier ? (ou aucun) : "; // dans le cas où l'utilisateur se trompe
 		cin >> mot;
 		parier(mot);
 	}
 }
 
-string Joueur :: getName() const
+string Joueur :: getName() const // getter du nom du joueur
 {
 	return name;
 }
 
-size_t Joueur :: getMise() const
+size_t Joueur :: getMise() const // getter de la mise du joueur
 {
 	return mise;
 }
 
-void Joueur :: setMise(const size_t valeur)
+void Joueur :: setMise(const size_t valeur) // setter pour la mise du joueur
 {
 	mise = valeur;
 }
 
 
-void Joueur :: miser(const int valeur)
+void Joueur :: miser(const int valeur) // fonction pour miser la somme que l'on souhaite
 {
-	if(valeur <= somme)
+	if(valeur <= somme) // dans le cas où on peut miser
 	{
 		somme -= valeur;
 		cout << endl << "Vous avez misé : " << valeur << endl << endl;
 	}
-	else
+	else // dans le cas où on ne peut pas miser
 	{
 		size_t valeur2;
-		cout << "Erreur" << endl << "Combien voulez-vous miser ? : ";
+		cout << "Combien voulez-vous miser ? : ";
 		cin >> valeur2;
 		setMise(valeur2);
 		miser(mise);
 	}
 }
 
-void Joueur :: pasParier(string mot)
+void Joueur :: pasParier(string mot) // fonction pour passer son tour
 {
 	cout << "Passe le tour !" << endl;
 }
 
-bool Joueur :: etatJoueur()
+bool Joueur :: etatJoueur() // fonction qui retourne si le joueur est toujours dans la partie
 {
-	if(somme <= 0)
+	if(somme <= 0) // s'il a plus d'argent il a perdu
 	{
 		return false;
 	}
@@ -175,18 +179,18 @@ bool Joueur :: etatJoueur()
 }
 
 
-Singe& Joueur :: getChoix() const
+Singe& Joueur :: getChoix() const // getter du singe du joueur
 {
 	return *choix;
 }
 
 
-int Joueur :: getSomme() const
+int Joueur :: getSomme() const // getter de la somme du joueur
 {
 	return somme;
 }
 
-void Joueur :: setName(const string mot)
+void Joueur :: setName(const string mot) // stter pour le nom du joueur
 {
 	name = mot;
 }
