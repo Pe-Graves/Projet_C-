@@ -12,23 +12,21 @@ Bonobo :: Bonobo(string nomSinge) : Singe(nomSinge, "Assassin", 150, 5, 15, 25, 
 
 Bonobo :: ~Bonobo(){}
 
-void Bonobo :: combat(Singe& adversaire)
+void Bonobo :: combat(Singe& adversaire, int i)
 {
-	while(getPA() >= 2)
+	int valeur = abs(int(adversaire.getArmure() - getPDC()));
+	for(int j = 1; j <= i; j++)
 	{
 		if(adversaire.vie() == true)
 		{
-			int valeur = abs(int(adversaire.getArmure() - getPDC()));
 			adversaire.setPDV(adversaire.getPDV() - valeur);
 			setPA(getPA() - 2);
 		}
-
 		else
 		{
-			//cout << "Vous essayez d'attaquer un singe mort !" << endl;
+			adversaire.setPDV(0);
 		}
 	}
-	resetPA();
 }
 
 bool Bonobo :: vie()
@@ -50,17 +48,21 @@ void Bonobo :: soin(Singe& a)
 	}
 }
 
-void Bonobo :: soin()
+void Bonobo :: soin(int luckSinge)
 {
-	if(vie() == true)
+	for(int i = 0; i < 3 - luckSinge; i++)
 	{
-		setPDV(getPDV() + getPDS());
-		setPA(getPA() - 2);
+		if(vie() == true)
+		{
+			setPDV(getPDV() + getPDS());
+			setPA(getPA() - 2);
 
-	}
-	else
-	{
-		cout << "Ce singe est déjà mort !" << endl;
+		}
+		else
+		{
+			cout << "Ce singe est déjà mort !" << endl;
+			setPDV(0);
+		}
 	}
 }
 

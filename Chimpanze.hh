@@ -12,9 +12,9 @@ public:
 	Chimpanze(std :: string nomSinge);
 	~Chimpanze();
 
-	void combat(Singe& adversaire);
+	void combat(Singe& adversaire, int i);
 	void soin(Singe& a);
-	void soin();
+	void soin(int luckSinge);
 	bool vie();
 	void resetPA();
 };

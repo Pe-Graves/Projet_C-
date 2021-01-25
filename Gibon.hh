@@ -12,9 +12,9 @@ public:
 	Gibon(std :: string nomSinge);
 	~Gibon();
 
-	void combat(Singe& adversaire);
+	void combat(Singe& adversaire, int i);
 	void soin(Singe& a);
-	void soin();
+	void soin(int luckSinge);
 	bool vie();
 	void resetPA();
 };

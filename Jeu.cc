@@ -131,11 +131,10 @@ void Jeu :: debutTour(int fin) // fonction pour le début du tour
         cin >> mot;
         tour(mot, i);
     }
-    //cout<< "PLAYER 1 : " << tab[0].getChoix().getPDV() << endl;
-    //cout<< "IA : " << ordinateur -> getChoix().getPDV() << endl;
-    //cout << "TUNE IA : " << ordinateur -> getSomme() << endl;
-    ordinateurSinge(); // IA joue pour ce tour
-    //cout << "TUNE IA : " << ordinateur -> getSomme() << endl;
+    if(tab.size() == 1)
+    {
+        ordinateurSinge(); // IA joue pour ce tour
+    }
     singe();
 }
 
@@ -149,7 +148,7 @@ void Jeu :: tour(string mot, const size_t i)
     }
     else if(mot == "oui") // On veut miser
     {
-        cout << "Sur quel singe voulez-vous parier ? (ou aucun) : ";
+        cout << "Sur quel singe voulez-vous parier ? (Macaque/Gorille/Gibon/Chimpanze/Bonobo/aucun) : ";
         cin >> mot;
         cout << endl;
         tab[i].parier(mot);
@@ -170,7 +169,7 @@ void Jeu :: decision(string mot, size_t i, size_t valeur)
 {
     while(1) // Si on ne veut pas parier pour l'instant
     {
-        cout << "Que voulez-vous faire ? (Quitter / Stats / Passer / Parier) : ";
+        cout << "Que voulez-vous faire ? (Quitter / Stats / Parier) : ";
         cin >> mot;
         if(mot == "Quitter") // Le joueur quitte la partie
         {
@@ -178,19 +177,14 @@ void Jeu :: decision(string mot, size_t i, size_t valeur)
             tab.erase(tab.begin() + i);
             break;
         }
-        if(mot == "Stats") // ON affiche les stats du joueur
+        if(mot == "Stats") // On affiche les stats du joueur
         {
             cout << "Vos stats sont les suivantes : " << endl;
             cout << tab[i] << endl;
         }
-        if(mot == "Passer") // ON passe son tour pour cette mise
+        if(mot == "Parier") // On décide finalement de parier
         {
-            tab[i].pasParier(mot);
-            break;
-        }
-        if(mot == "Parier") // ON décide finalement de parier
-        {
-            cout << "Sur quel singe voulez-vous parier ? (ou aucun) : "; cin >> mot; cout << endl;
+            cout << "Sur quel singe voulez-vous parier ? (Macaque/Gorille/Gibon/Chimpanze/Bonobo/aucun) : "; cin >> mot; cout << endl;
             tab[i].parier(mot);
             cout << "Combien voulez-vous miser ? : "; cin >> valeur;
             tab[i].setMise(valeur);
@@ -199,75 +193,82 @@ void Jeu :: decision(string mot, size_t i, size_t valeur)
         }
     }
 }
+int Jeu :: joueurVsIA()
+{
+    srand((unsigned int)time(0));
+    int luckJoueur;
+    int luckSinge;
+    while(checkSinge() ==  -2) // tant qu'un singe n'est pas mort
+    {
+        luckJoueur  = rand() % 2;
+        luckSinge = rand() % 3 + 1 ;
+        switch(luckJoueur)
+        {
+            case 0:
+                tab[0].getChoix().combat(ordinateur -> getChoix(),luckSinge); // on attaque le singe ennemi
+                tab[0].getChoix().soin(luckSinge); // permet de se soigner
+                tab[0].getChoix().resetPA(); // on remet les points d'action au max
+                break;
+            case 1:
+                ordinateur -> getChoix().combat(tab[0].getChoix(),luckSinge);
+                ordinateur -> getChoix().soin(luckSinge);
+                ordinateur -> getChoix().resetPA();
+                break;
+        }
+    }
+    return checkSinge();
+}
+
+int Jeu :: joueurVsJoueur() // fonction identique à celle de joueurVsIA mais modifiée pour les joueurs
+{
+    srand((unsigned int)time(0));
+    int luckAttaquant;
+    int luckCible;
+    int luckSinge;
+    while(checkSinge() == -2)
+    {
+        luckAttaquant = rand() % tab.size();
+        luckCible = rand() % tab.size();
+        luckSinge = rand() % 3 + 1;
+        tab[luckAttaquant].getChoix().combat(tab[luckCible].getChoix(), luckSinge); // on attaque le singe d'un joueur
+        tab[luckAttaquant].getChoix().soin(luckSinge); // permet de se soigner
+        tab[luckAttaquant].getChoix().resetPA(); // on remet les points d'action au max
+    }
+    return checkSinge();
+}
 
 
 void Jeu :: singe()
 {   
-    int flag = 0;
-    int luck;
-    int singe;
-    if(tab.size() == 1)
+    int mort;
+    if(tab.size() == 1) // Dans le cas où on a 1 jour + IA
     {
-        while(flag == 0)
+        mort = joueurVsIA();
+        switch(mort)
         {
-            flag = checkSinge();
-            cout << "LE FLAG VAUT : " << flag << endl;
-            cout << "ORDI PDV : " << ordinateur -> getChoix().getPDV() << endl;
-            cout << "PLAYER  : " << tab[0].getChoix().getPDV() << endl;
-            singe = unSurDeux();
-            cout << "SINGE : " << singe << endl;
-            luck  = chance();
-            cout << "LUCK : " << luck << endl;
-            if(singe)
+            case -1: // si le joueur a gagné le pari
+                ordinateur -> perdre();
+                tab[0].gagner();
+                break;
+            case 0 :  // si l'IA a gagné le pari
+                ordinateur -> gagner();
+                tab[0].perdre();
+                break;
+        }
+    }
+    else
+    {
+        mort = joueurVsJoueur();
+        tab[mort].perdre();
+        for(size_t i = 0; i < tab.size(); i++)
+        {
+            if(i != (size_t) mort)
             {
-                if(luck == 0)
-                {
-                    tab[0].getChoix().combat(ordinateur -> getChoix());
-                }
-                else
-                {
-                    cout << "Echec critique" << endl;
-                }
-            }
-            else
-            {
-                if(luck == 0)
-                {
-                    ordinateur -> getChoix().combat(tab[0].getChoix());
-                }
-                else 
-                {
-                    cout << "Echec critique" << endl;
-                }
+                tab[i].gagner();
             }
         }
     }
 }
-
-/*
-void Jeu :: singe1()
-{
-    int mort = 0;
-    if(tab.size() == 1) // Si l'on a un seul joueur dans la partie on crée un joueur_ordi
-    {
-        string word;
-        tab.push_back(Joueur("IA"));
-        word = IA();
-        tab[1].parier(word);        
-    }
-    while(1)
-    {
-        mort = checkSinge();
-        if(mort == 1)
-        {
-            cout << "BLABLA" << endl;
-            break;
-        }
-        mort = 1;
-        //fight();
-    }
-}
-*/
 
 string Jeu :: IA() // fonction qui permet de choisir aléatoirement un singe/aucun à l'IA
 {
@@ -300,134 +301,34 @@ string Jeu :: IA() // fonction qui permet de choisir aléatoirement un singe/auc
 
 int Jeu :: checkSinge() // fonction qui permet de voir si un singe est mort
 {
-    if(ordinateur -> getChoix().vie() == false)
+    if(tab.size() == 1 && ordinateur -> getChoix().vie() == false)
     {
-        return 1;
+        return -1; // on retourne -1 dans le cas où c'est le singe de l'IA qui est mort
     }
     for(size_t i = 0; i < tab.size(); i++)
     {
         if(tab[i].getChoix().vie() == false)
         {
-            return 1;
+            return i; // on retourne l'indice du singe du joueur pour savoir qui a perdu
         }
     }
-    return 0;
+    return -2; // pas de singe mort
 }
-
-/*
-void Jeu :: fight() // fonction de combat entre les singes
-{
-   if(tab.size() == 2)
-   {
-    fight2();
-   }
-   else
-   {
-    //fight3();
-   }
-    //cout << "La taille de tab vaut : ";
-    //cout << tab.size() << endl;
-    for(size_t i = 0; i < tab.size(); i++)
-        {
-            cout << "JE SUIS LA PD" << endl;
-            etat = chance();
-            for(size_t j = 0; i < tab.size(); j++)
-            {
-                cout << "JE SUIS LA ENCULE" << endl;
-                if(i != j)
-                {
-                    switch(etat)
-                    {
-                        case 0:
-                            tab[i].getChoix().combat(tab[j].getChoix());
-                            break;
-                        case 1:
-                            cout << "Echec Critique" << endl;
-                            break;
-                    }
-                }
-            }
-        }
-}*/
-
-int Jeu :: chance()
-{
-    srand((unsigned int)time(0));
-    int val = rand() % 3;
-    switch(val)
-    {
-        case 1:
-            val = 0;
-            break;
-        case 2:
-            val = 0;
-            break;
-        case 3:
-            val = 1;
-            break;
-    }
-    return val; 
-}
-
-int Jeu :: unSurDeux()
-{
-    srand((unsigned int)time(0));
-    int val = rand() % 2;
-    return val;  
-}
-
-/*
-void Jeu :: fight2()
-{
-    int etat = chance();
-    int joueur_attaque = unSurDeux();
-    switch(joueur_attaque)
-    {
-        case 1:
-            if(!etat)
-            {
-                cout << "SINGE IA" << tab[1].getChoix().getPDV() << endl; 
-                tab[0].getChoix().combat(tab[1].getChoix());
-                cout << "SINGE IA" << tab[1].getChoix().getPDV() << endl;
-                break; 
-            }
-            else
-            {
-                cout << "Echec Critique" << endl;
-                break;
-            }
-            //break;
-        case 2:
-            if(!etat)
-            {
-                cout << "SINGE JOUEUR" << tab[0].getChoix().getPDV() << endl;
-                tab[1].getChoix().combat(tab[0].getChoix());
-                cout << "SINGE JOUEUR" << tab[0].getChoix().getPDV() << endl;
-                break;
-            }
-            else
-            {
-                cout << "Echec Critique" << endl;
-                break;
-            }
-            //break;
-    }
-}
-*/
-/*
-void Jeu :: fight3()
-{}
-*/
 
 void Jeu :: ordinateurSinge()
 {
     srand((unsigned int)time(0));
     string word;
     word = IA();
-    ordinateur -> parier(word);
+    ordinateur -> parier(word); // L'IA choisit un singe aléatoirement
     int valeur2 = ordinateur -> getSomme();
     int valeur = rand() % valeur2;
     ordinateur -> setMise(valeur);
-    cout << "MISE IA : " << valeur << endl;
-    ordinateur -> miser(ordinateur -> getMise());
+    ordinateur -> miser(ordinateur -> getMise()); // L'IA vote aléatoirement
+}
+
+
+Joueur& Jeu :: getOrdinateur() const
+{
+    return *ordinateur;
 }

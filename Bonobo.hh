@@ -12,9 +12,9 @@ public:
 	Bonobo(std :: string nomSinge);
 	~Bonobo();
 
-	void combat(Singe& adversaire);
+	void combat(Singe& adversaire, int i);
 	void soin(Singe& a);
-	void soin();
+	void soin(int luckSinge);
 	bool vie();
 	void resetPA();
 };

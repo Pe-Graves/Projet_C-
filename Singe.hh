@@ -20,16 +20,16 @@ public:
 
 	virtual ~Singe(){};
 
-	virtual void combat(Singe& adversaire) = 0;
+	virtual void combat(Singe& adversaire, int i) = 0;
 	virtual void soin(Singe& a) = 0;
-	virtual void soin() = 0;
+	virtual void soin(int luckSinge) = 0;
 	virtual bool vie() = 0;
 	virtual void resetPA() = 0;
 
 	void setPDV(const int valeur){pdv = valeur;};
 	//void setPDC(const std :: size_t valeur){pdc = valeur;};
 	//void setPDS(const std :: size_t valeur){pds = valeur;};
-	//void setPDV(const std :: size_t valeur){pdv = valeur;};
+	void setPDV(const std :: size_t valeur){pdv = valeur;};
 	void setPA(const std :: size_t valeur){pa = valeur;};
 
 	int getPDV(){return pdv;};

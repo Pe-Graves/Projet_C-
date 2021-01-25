@@ -66,24 +66,17 @@ void Joueur :: gain() // fonction pour attribuer le gain du joueur en cas de vic
 	{
 		  somme += mise * 20;
 	}
-
-
 }
 
 void Joueur :: gagner() // fonction pour dire que le joueur a gagner son pari
 {
-	if(choix -> vie() == false)
-	{
-		cout << "Vous avez gagné votre pari" << endl;
-	}
+		cout << getName() << " a gagné son pari" << endl;
+		gain();
 }
 
 void Joueur :: perdre() // fonction pour dire que le joueur a perdu son pari
 {
-	if(choix -> vie() == true)
-	{
-		cout << "Vous avez perdu votre pari" << endl;
-	}
+		cout << getName() << " a perdu son pari" << endl;
 }
 
 ostream& operator<<(ostream& os, Joueur& a) // operator pour afficher le joueur
@@ -149,7 +142,7 @@ void Joueur :: miser(const int valeur) // fonction pour miser la somme que l'on 
 	if(valeur <= somme) // dans le cas où on peut miser
 	{
 		somme -= valeur;
-		cout << endl << "Vous avez misé : " << valeur << endl << endl;
+		cout << endl << getName() <<  " a misé : " << valeur << endl << endl;
 	}
 	else // dans le cas où on ne peut pas miser
 	{

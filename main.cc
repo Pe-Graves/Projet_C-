@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "Jeu.hh"
-#include "Macaque.hh"
+#include "Joueur.hh"
 
 using namespace std;
 
@@ -203,7 +203,18 @@ int main()
 
 	Jeu a;
 	a.jouer();
+/*
+	Bonobo a;
+	Macaque b;
 
+	cout << a << endl;
+	cout << b << endl;
+	a.combat(b);
+	cout << b << endl;
+	b.combat(a);
+	cout << a << endl;
+
+*/
 	/*Macaque a;
 	Macaque b;
 	cout << a.getPA() << endl;

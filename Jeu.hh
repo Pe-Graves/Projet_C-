@@ -23,6 +23,8 @@ public:
 	Jeu();
 	~Jeu();
 
+	Joueur& getOrdinateur() const;
+
 	void jouer();
 
 	void intro();
@@ -39,15 +41,11 @@ public:
 	void decision(std :: string mot, std :: size_t i, std :: size_t decision);
 
 	void singe();
-	//void singe1();
 	void ordinateurSinge();
 	int checkSinge();
 	std :: string IA();
-	//void fight();
-	//void fight2();
-	//void fight3();
-	int unSurDeux();
-	int chance();
+	int joueurVsIA();
+	int joueurVsJoueur();
 
 protected:
 	static int numero;
