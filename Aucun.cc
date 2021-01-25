@@ -21,3 +21,5 @@ void Aucun :: soin(Singe& a){}
 void Aucun :: soin(int luckSinge){}
 
 void Aucun :: resetPA(){}
+
+void Aucun :: special(Singe& adversaire){}

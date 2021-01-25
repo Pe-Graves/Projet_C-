@@ -12,6 +12,13 @@
 #include "Gorille.hh"
 #include "Chimpanze.hh"
 #include "Bonobo.hh"
+
+#include "GibonUp.hh"
+#include "MacaqueUp.hh"
+#include "GorilleUp.hh"
+#include "ChimpanzeUp.hh"
+#include "BonoboUp.hh"
+
 #include "Singe.hh"
 #include "Aucun.hh"
 

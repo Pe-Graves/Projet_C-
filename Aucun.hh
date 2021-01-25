@@ -16,6 +16,7 @@ class Aucun : public Singe
 		~Aucun();
 
 		void combat(Singe& adversaire, int i);
+		void special(Singe& adversaire);
 		void soin(Singe& a);
 		void soin(int luckSinge);
 		bool vie();

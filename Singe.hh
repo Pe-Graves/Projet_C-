@@ -27,9 +27,11 @@ public:
 	virtual void resetPA() = 0;
 
 	void setPDV(const int valeur){pdv = valeur;};
-	//void setPDC(const std :: size_t valeur){pdc = valeur;};
-	//void setPDS(const std :: size_t valeur){pds = valeur;};
+	void setPDC(const std :: size_t valeur){pdc = valeur;};
+	void setPDS(const std :: size_t valeur){pds = valeur;};
 	void setPDV(const std :: size_t valeur){pdv = valeur;};
+	void setArmure(const std :: size_t valeur){armure = valeur;};
+	void setSigle(const std :: string mot){sigle = mot;};
 	void setPA(const std :: size_t valeur){pa = valeur;};
 
 	int getPDV(){return pdv;};

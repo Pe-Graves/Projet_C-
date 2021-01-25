@@ -6,9 +6,9 @@
 
 using namespace std;
 
-Chimpanze :: Chimpanze() : Singe("Chimpanze", "Healer", 150, 5, 15, 25, 6){}	
+Chimpanze :: Chimpanze() : Singe("Chimpanze", "Healer", 50, 15, 25, 20, 6){}	
 
-Chimpanze :: Chimpanze(string nomSinge) : Singe(nomSinge, "Healer", 150, 5, 15, 25, 6){}
+Chimpanze :: Chimpanze(string nomSinge) : Singe(nomSinge, "Healer", 50, 15, 25, 20, 6){}
 
 Chimpanze :: ~Chimpanze(){}
 
@@ -19,6 +19,7 @@ void Chimpanze :: combat(Singe& adversaire, int i)
 	{
 		if(adversaire.vie() == true)
 		{
+			adversaire.setPDS(adversaire.getPDS() - 1);
 			adversaire.setPDV(adversaire.getPDV() - valeur);
 			setPA(getPA() - 2);
 		}

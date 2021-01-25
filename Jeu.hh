@@ -1,18 +1,5 @@
 #pragma once 
 
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <cstring>
-#include <vector>
-#include <cmath>
-
-#include "Gibon.hh"
-#include "Gorille.hh"
-#include "Macaque.hh"
-#include "Chimpanze.hh"
-#include "Bonobo.hh"
-#include "Aucun.hh"
 #include "Joueur.hh"
 
 class Jeu
@@ -46,6 +33,7 @@ public:
 	std :: string IA();
 	int joueurVsIA();
 	int joueurVsJoueur();
+	void infini();
 
 protected:
 	static int numero;

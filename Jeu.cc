@@ -99,6 +99,11 @@ int Jeu :: finPartie() // fonction pour arrêter la partie dans le cas où il n'
         cout << "La partie est finie" << endl;
         return 1;
     }
+    else if(tab.size() == 1 && ordinateur -> getSomme() <= 0)
+    {
+        cout << "L'IA a perdu" << endl;
+        return 1;
+    }
     else
     {
         return 0;
@@ -169,7 +174,7 @@ void Jeu :: decision(string mot, size_t i, size_t valeur)
 {
     while(1) // Si on ne veut pas parier pour l'instant
     {
-        cout << "Que voulez-vous faire ? (Quitter / Stats / Parier) : ";
+        cout << "Que voulez-vous faire ? (Quitter / Stats / Parier / IA) : ";
         cin >> mot;
         if(mot == "Quitter") // Le joueur quitte la partie
         {
@@ -191,6 +196,11 @@ void Jeu :: decision(string mot, size_t i, size_t valeur)
             tab[i].miser(tab[i].getMise());
             break;
         }
+        if(mot == "IA") // on veut voir les stats de l'IA
+        {
+            cout << "Les stats de l'IA sont : " << endl;
+            cout << *ordinateur << endl;
+        }
     }
 }
 int Jeu :: joueurVsIA()
@@ -209,7 +219,7 @@ int Jeu :: joueurVsIA()
                 tab[0].getChoix().soin(luckSinge); // permet de se soigner
                 tab[0].getChoix().resetPA(); // on remet les points d'action au max
                 break;
-            case 1:
+            case 1: 
                 ordinateur -> getChoix().combat(tab[0].getChoix(),luckSinge);
                 ordinateur -> getChoix().soin(luckSinge);
                 ordinateur -> getChoix().resetPA();
@@ -256,7 +266,7 @@ void Jeu :: singe()
                 break;
         }
     }
-    else
+    else // Dans le cas où on a au moins 2 joueurs dont 1 qui n'est pas l'IA
     {
         mort = joueurVsJoueur();
         tab[mort].perdre();
@@ -317,14 +327,21 @@ int Jeu :: checkSinge() // fonction qui permet de voir si un singe est mort
 
 void Jeu :: ordinateurSinge()
 {
+    int valeur;
+    int valeur2;
     srand((unsigned int)time(0));
     string word;
     word = IA();
     ordinateur -> parier(word); // L'IA choisit un singe aléatoirement
-    int valeur2 = ordinateur -> getSomme();
-    int valeur = rand() % valeur2;
+
+    valeur2 = ordinateur -> getSomme();
+    valeur = rand() % valeur2;
+    if(valeur == 0)
+    {
+        valeur += 1;
+    }
     ordinateur -> setMise(valeur);
-    ordinateur -> miser(ordinateur -> getMise()); // L'IA vote aléatoirement
+    ordinateur -> miser(ordinateur -> getMise()); // L'IA mise aléatoirement
 }
 
 
@@ -332,3 +349,6 @@ Joueur& Jeu :: getOrdinateur() const
 {
     return *ordinateur;
 }
+
+void Jeu :: infini()
+{   }

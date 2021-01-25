@@ -6,9 +6,9 @@
 
 using namespace std;
 
-Bonobo :: Bonobo() : Singe("Bonobo", "Assassin", 150, 5, 15, 25, 6){}	
+Bonobo :: Bonobo() : Singe("Bonobo", "Assassin", 60, 45, 10, 15, 6){}	
 
-Bonobo :: Bonobo(string nomSinge) : Singe(nomSinge, "Assassin", 150, 5, 15, 25, 6){}
+Bonobo :: Bonobo(string nomSinge) : Singe(nomSinge, "Assassin", 60, 45, 10, 15, 6){}
 
 Bonobo :: ~Bonobo(){}
 
@@ -19,7 +19,7 @@ void Bonobo :: combat(Singe& adversaire, int i)
 	{
 		if(adversaire.vie() == true)
 		{
-			adversaire.setPDV(adversaire.getPDV() - valeur);
+			adversaire.setPDV(adversaire.getPDV() - 2*valeur);
 			setPA(getPA() - 2);
 		}
 		else

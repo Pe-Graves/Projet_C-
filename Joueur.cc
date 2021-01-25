@@ -32,8 +32,7 @@ Joueur :: Joueur(string nomJoueur) // Constructeur
 
 Joueur :: ~Joueur() // Deconstructeur
 {
-	/*cout << "~Joueur()" << endl;
-	cout << endl;*/
+	/*cout << "~Joueur()" << endl << endl;*/
 }
 
 void Joueur :: gain() // fonction pour attribuer le gain du joueur en cas de victoire
@@ -82,43 +81,80 @@ void Joueur :: perdre() // fonction pour dire que le joueur a perdu son pari
 ostream& operator<<(ostream& os, Joueur& a) // operator pour afficher le joueur
 {
 	os << "Joueur : " << a.name << endl;
-	os << "Vous avez : " << a.somme << " points" << endl << endl;
+	os << "Vous avez : " << a.getSomme() << " points" << endl << endl;
 	os << "Votre singe : " << a.getChoix().getNom() << endl;
 	return os;
 }
 
 void Joueur :: parier(string mot) // Fonction qui permet de donner un singe au joueur ou aucun
 {
+	srand((unsigned int)time(0));
+	int chance = rand()%100;
+	// cout << "CHANCE : " << chance << endl;
 	if(mot == "Gorille")
 	{
-		choix = new Gorille();
+		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
+		{
+			choix = new GorilleUp();
+		}
+
+		else
+		{
+			choix = new Gorille();
+		}
 	}
 	else if(mot == "Gibon")
 	{
-		choix = new Gibon();
+		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
+		{
+			choix = new GibonUp();
+		}
+
+		else
+		{
+			choix = new Gibon();
+		}
 	}
 	else if(mot == "Macaque")
 	{
-		choix = new Macaque();
+		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
+		{
+			choix = new MacaqueUp();
+		}
+
+		else
+		{
+			choix = new Macaque();
+		}
 	}
 	else if(mot == "Bonobo")
 	{
-		choix = new Bonobo();
+		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
+		{
+			choix = new BonoboUp();
+		}
+
+		else
+		{
+			choix = new Bonobo();
+		}
 	}
 	else if(mot == "Chimpanze")
 	{
-		choix = new Chimpanze();
+		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
+		{
+			choix = new ChimpanzeUp();
+		}
+		
+		else
+		{
+			choix = new Chimpanze();
+		}
 	}
-	else if(mot == "aucun")
-	{
-		choix =  new Aucun();
-	}
-	else
-	{
-		cout << "Sur quel singe voulez-vous parier ? (ou aucun) : "; // dans le cas où l'utilisateur se trompe
-		cin >> mot;
-		parier(mot);
-	}
+	// else
+	// {
+	// 	choix =  new Aucun();
+	// }
 }
 
 string Joueur :: getName() const // getter du nom du joueur

@@ -6,9 +6,9 @@
 
 using namespace std;
 
-Gorille :: Gorille() : Singe("Gorille", "CAC", 100, 20, 5, 10, 6){}	
+Gorille :: Gorille() : Singe("Gorille", "CAC", 90, 35, 10, 25, 6){}	
 
-Gorille :: Gorille(string nomSinge) : Singe(nomSinge, "CAC", 100, 20, 5, 10, 6){}
+Gorille :: Gorille(string nomSinge) : Singe(nomSinge, "CAC", 90, 35, 10, 25, 6){}
 
 Gorille :: ~Gorille(){}
 
@@ -19,7 +19,7 @@ void Gorille :: combat(Singe& adversaire, int i)
 	{
 		if(adversaire.vie() == true)
 		{
-			adversaire.setPDV(adversaire.getPDV() - valeur);
+			adversaire.setPDV(adversaire.getPDV() - 3*valeur);
 			setPA(getPA() - 2);
 		}
 		else

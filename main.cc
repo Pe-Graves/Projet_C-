@@ -203,6 +203,8 @@ int main()
 
 	Jeu a;
 	a.jouer();
+
+
 /*
 	Bonobo a;
 	Macaque b;

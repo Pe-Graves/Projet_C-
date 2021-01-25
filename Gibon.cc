@@ -6,9 +6,9 @@
 
 using namespace std;
 
-Gibon :: Gibon() : Singe("Gibon", "Distance", 80, 25, 10, 10, 6){}	
+Gibon :: Gibon() : Singe("Gibon", "Distance", 45, 45, 10, 25, 6){}	
 
-Gibon :: Gibon(string nomSinge) : Singe(nomSinge, "Distance", 80, 25, 10, 10, 6){}
+Gibon :: Gibon(string nomSinge) : Singe(nomSinge, "Distance", 45, 45, 10, 25, 6){}
 
 Gibon :: ~Gibon(){}
 
@@ -19,6 +19,7 @@ void Gibon :: combat(Singe& adversaire, int i)
 	{
 		if(adversaire.vie() == true)
 		{
+			adversaire.setPA(adversaire.getPA() - 1);
 			adversaire.setPDV(adversaire.getPDV() - valeur);
 			setPA(getPA() - 2);
 		}

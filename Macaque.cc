@@ -6,9 +6,9 @@
 
 using namespace std;
 
-Macaque :: Macaque() : Singe("Macaque", "Tank", 150, 5, 15, 25, 6){}	
+Macaque :: Macaque() : Singe("Macaque", "Tank", 100, 20, 10, 25, 6){}	
 
-Macaque :: Macaque(string nomSinge) : Singe(nomSinge, "Tank", 150, 5, 15, 25, 6){}
+Macaque :: Macaque(string nomSinge) : Singe(nomSinge, "Tank", 100, 20, 10, 25, 6){}
 
 Macaque :: ~Macaque(){}
 
@@ -19,6 +19,7 @@ void Macaque :: combat(Singe& adversaire,int i)
 	{
 		if(adversaire.vie() == true)
 		{
+			adversaire.setArmure(adversaire.getArmure() - 2);
 			adversaire.setPDV(adversaire.getPDV() - valeur);
 			setPA(getPA() - 2);
 		}
@@ -27,25 +28,6 @@ void Macaque :: combat(Singe& adversaire,int i)
 			adversaire.setPDV(0);
 		}
 	}
-	//adversaire.setPDV(adversaire.getPDV() - valeur);
-	//setPA(getPA() - 2);
-	/*while(getPA() >= 2)
-	{
-		if(adversaire.vie() == true)
-		{
-			int valeur = abs(int(adversaire.getArmure() - getPDC()));
-			adversaire.setPDV(adversaire.getPDV() - valeur);
-			setPA(getPA() - 2);
-		}
-
-		else
-		{
-			//cout << "ON TUE LE SINGE ENNEMI" << endl;
-			adversaire.setPDV(0);
-		}
-
-	}
-	//resetPA();*/
 }
 
 bool Macaque :: vie()
