@@ -33,7 +33,10 @@ public:
 	std :: string IA();
 	int joueurVsIA();
 	int joueurVsJoueur();
-	void infini();
+
+	// friend bool operator==(Joueur& a, Joueur& b);
+	// Joueur operator()(std :: size_t i) const;
+	// friend std :: ostream& operator<<(std :: ostream os, std :: vector<Joueur>&);
 
 protected:
 	static int numero;
@@ -41,4 +44,5 @@ protected:
 	std :: string nomSinge;
     std :: vector <Joueur> tab;
     Joueur* ordinateur;
+    // Joueur perdu = Joueur("perdu");
 };

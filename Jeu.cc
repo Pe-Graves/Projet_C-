@@ -153,7 +153,7 @@ void Jeu :: tour(string mot, const size_t i)
     }
     else if(mot == "oui") // On veut miser
     {
-        cout << "Sur quel singe voulez-vous parier ? (Macaque/Gorille/Gibon/Chimpanze/Bonobo/aucun) : ";
+        cout << "Sur quel singe voulez-vous parier ? (Macaque/Gorille/Gibon/Chimpanze/Bonobo) : ";
         cin >> mot;
         cout << endl;
         tab[i].parier(mot);
@@ -189,7 +189,7 @@ void Jeu :: decision(string mot, size_t i, size_t valeur)
         }
         if(mot == "Parier") // On décide finalement de parier
         {
-            cout << "Sur quel singe voulez-vous parier ? (Macaque/Gorille/Gibon/Chimpanze/Bonobo/aucun) : "; cin >> mot; cout << endl;
+            cout << "Sur quel singe voulez-vous parier ? (Macaque/Gorille/Gibon/Chimpanze/Bonobo) : "; cin >> mot; cout << endl;
             tab[i].parier(mot);
             cout << "Combien voulez-vous miser ? : "; cin >> valeur;
             tab[i].setMise(valeur);
@@ -349,6 +349,3 @@ Joueur& Jeu :: getOrdinateur() const
 {
     return *ordinateur;
 }
-
-void Jeu :: infini()
-{   }

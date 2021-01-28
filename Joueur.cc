@@ -19,6 +19,8 @@ Joueur :: Joueur() // Constructeur
 	cin >> name;
 	cout << endl << "Vous vous appelez : " << name << endl << endl;
 	cout << "Vous commencez avec : " << somme << endl << endl;
+	player.first = name;
+	player.second = choix;
 }
 
 Joueur :: Joueur(string nomJoueur) // Constructeur
@@ -28,6 +30,8 @@ Joueur :: Joueur(string nomJoueur) // Constructeur
 	string mot;
 	choix = new Aucun();
 	somme = rand() % 100;
+	player.first = name;
+	player.second = choix;
 }
 
 Joueur :: ~Joueur() // Deconstructeur
@@ -90,17 +94,18 @@ void Joueur :: parier(string mot) // Fonction qui permet de donner un singe au j
 {
 	srand((unsigned int)time(0));
 	int chance = rand()%100;
-	// cout << "CHANCE : " << chance << endl;
 	if(mot == "Gorille")
 	{
 		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
 		{
 			choix = new GorilleUp();
+			player.second = choix;
 		}
 
 		else
 		{
 			choix = new Gorille();
+			player.second = choix;
 		}
 	}
 	else if(mot == "Gibon")
@@ -108,11 +113,13 @@ void Joueur :: parier(string mot) // Fonction qui permet de donner un singe au j
 		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
 		{
 			choix = new GibonUp();
+			player.second = choix;
 		}
 
 		else
 		{
 			choix = new Gibon();
+			player.second = choix;
 		}
 	}
 	else if(mot == "Macaque")
@@ -120,11 +127,13 @@ void Joueur :: parier(string mot) // Fonction qui permet de donner un singe au j
 		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
 		{
 			choix = new MacaqueUp();
+			player.second = choix;
 		}
 
 		else
 		{
 			choix = new Macaque();
+			player.second = choix;
 		}
 	}
 	else if(mot == "Bonobo")
@@ -132,11 +141,13 @@ void Joueur :: parier(string mot) // Fonction qui permet de donner un singe au j
 		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
 		{
 			choix = new BonoboUp();
+			player.second = choix;
 		}
 
 		else
 		{
 			choix = new Bonobo();
+			player.second = choix;
 		}
 	}
 	else if(mot == "Chimpanze")
@@ -144,17 +155,15 @@ void Joueur :: parier(string mot) // Fonction qui permet de donner un singe au j
 		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
 		{
 			choix = new ChimpanzeUp();
+			player.second = choix;
 		}
 		
 		else
 		{
 			choix = new Chimpanze();
+			player.second = choix;
 		}
 	}
-	// else
-	// {
-	// 	choix =  new Aucun();
-	// }
 }
 
 string Joueur :: getName() const // getter du nom du joueur
@@ -223,4 +232,3 @@ void Joueur :: setName(const string mot) // stter pour le nom du joueur
 {
 	name = mot;
 }
-
