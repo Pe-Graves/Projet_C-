@@ -302,9 +302,6 @@ string Jeu :: IA() // fonction qui permet de choisir aléatoirement un singe/auc
         case 5:
             word = "Gorille";
             break;
-        case 6:
-            word = "aucun";
-            break;
     }
     return word;
 }
