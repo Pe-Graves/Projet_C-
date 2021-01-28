@@ -23,7 +23,7 @@ public:
 	void debutTour(int fin);
 	void tour(std :: string mot, const std :: size_t i);
 	int finPartie();
-	void suppJoueur(const std :: size_t i);
+	void suppJoueur();
 	void choixSinge();
 	void decision(std :: string mot, std :: size_t i, std :: size_t decision);
 
@@ -34,15 +34,10 @@ public:
 	int joueurVsIA();
 	int joueurVsJoueur();
 
-	// friend bool operator==(Joueur& a, Joueur& b);
-	// Joueur operator()(std :: size_t i) const;
-	// friend std :: ostream& operator<<(std :: ostream os, std :: vector<Joueur>&);
-
 protected:
 	static int numero;
 	std :: size_t nbJoueur;
 	std :: string nomSinge;
     std :: vector <Joueur> tab;
     Joueur* ordinateur;
-    // Joueur perdu = Joueur("perdu");
 };

@@ -41,7 +41,7 @@ public:
 	std :: size_t getPA(){return pa;};
 
 	std :: string getNom(){return nom;};
-	std :: string getSigle(){return sigle;};
+	//std :: string getSigle(){return sigle;};
 
 	friend std :: ostream& operator<<(std :: ostream& os, Singe& a)
 	{
@@ -60,7 +60,7 @@ public:
 protected:
 	std :: string nom;
 	std :: string sigle;
-	
+
 	int pdv;
 	std :: size_t pdc;
 	std :: size_t pds;

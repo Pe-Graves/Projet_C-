@@ -13,7 +13,7 @@ Joueur :: Joueur() // Constructeur
 {
 	srand((unsigned int)time(0));
 	string mot;
-	somme = rand() % 100;
+	somme = (rand() % 100) + 1;
 	choix = new Aucun();
 	cout << "Veuillez choisir votre nom de joueur: ";
 	cin >> name;
@@ -29,9 +29,10 @@ Joueur :: Joueur(string nomJoueur) // Constructeur
 	srand((unsigned int)time(0));
 	string mot;
 	choix = new Aucun();
-	somme = rand() % 100;
+	somme = (rand() % 100) + 1;
 	player.first = name;
 	player.second = choix;
+
 }
 
 Joueur :: ~Joueur() // Deconstructeur
@@ -93,13 +94,14 @@ ostream& operator<<(ostream& os, Joueur& a) // operator pour afficher le joueur
 void Joueur :: parier(string mot) // Fonction qui permet de donner un singe au joueur ou aucun
 {
 	srand((unsigned int)time(0));
-	int chance = rand()%100;
+	int chance = (rand() % 100) + 1;
 	if(mot == "Gorille")
 	{
 		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
 		{
 			choix = new GorilleUp();
 			player.second = choix;
+
 		}
 
 		else
@@ -150,7 +152,7 @@ void Joueur :: parier(string mot) // Fonction qui permet de donner un singe au j
 			player.second = choix;
 		}
 	}
-	else if(mot == "Chimpanze")
+	else
 	{
 		if(chance == 10 || chance == 20 || chance == 30 || chance == 40 || chance == 50 || chance == 60 || chance == 70 || chance == 80 || chance == 90 || chance == 100)
 		{
@@ -232,3 +234,4 @@ void Joueur :: setName(const string mot) // stter pour le nom du joueur
 {
 	name = mot;
 }
+

@@ -39,7 +39,6 @@ public:
 
 	void setMise(const std :: size_t valeur);
 	void setName(const std :: string mot);
-	void setSomme(const int valeur){somme = valeur;};
 
 	void gagner();
 	void perdre();
@@ -53,7 +52,7 @@ public:
 	friend std :: ostream& operator<<(std :: ostream& os, Joueur& a);
 
 protected:	
-	int somme; // points
+	int somme;
 	std :: pair <std :: string, Singe*> player;
 	std :: size_t mise;
 	std :: string name;

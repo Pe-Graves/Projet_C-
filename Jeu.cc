@@ -10,6 +10,7 @@
 using namespace std;
 
 int Jeu::numero = 1;
+size_t nbJoueur = 1;
 
 Jeu :: Jeu(){}
 
@@ -41,7 +42,7 @@ void Jeu :: joueur() // Fonction pour créer les joueurs de la partie avec leur 
     string mot;
     cout << "Tout d'abord veuillez choisir le nombre de participants : ";    
     cin >> nbJoueur;
-    for(size_t i = 0; i < nbJoueur; i++)
+    for(size_t i = 0; i < nbJoueur; ++i)
     {
         nomJoueur = "Joueur_" + to_string(numero);
         tab.push_back(Joueur(nomJoueur));
@@ -82,6 +83,7 @@ void Jeu :: partie() // fonction partie
     int fin = 0;
     while(true)
     {
+        suppJoueur(); // On supprime un joueur si sa somme vaut 0
         fin = finPartie(); // on vértifie si la partie n'est pas finie
         if(fin == 1)
         {
@@ -94,7 +96,7 @@ void Jeu :: partie() // fonction partie
 
 int Jeu :: finPartie() // fonction pour arrêter la partie dans le cas où il n'y plus de joueur
 {
-    if(tab.size() == 0)
+    if(tab.size() == 0 || ((tab.size() == 1) && (nbJoueur != 1)))
     {
         cout << "La partie est finie" << endl;
         return 1;
@@ -111,12 +113,15 @@ int Jeu :: finPartie() // fonction pour arrêter la partie dans le cas où il n'
 }
 
 
-void Jeu :: suppJoueur(const size_t i) // fonction pour supprimer un joueur dans le vecteur
+void Jeu :: suppJoueur() // fonction pour supprimer un joueur dans le vecteur
 {
-    bool etat = tab[i].etatJoueur();
-    if(etat == false)
+    for(size_t i = 0; i < tab.size(); i++)
     {
-        tab.erase(tab.begin() + i);
+        bool etat = tab[i].etatJoueur();
+        if(etat == false)
+        {
+            tab.erase(tab.begin() + i);
+        }
     }
 }
 
@@ -125,12 +130,6 @@ void Jeu :: debutTour(int fin) // fonction pour le début du tour
     string mot;
     for(size_t i = 0; i < tab.size(); i++)
     {
-        suppJoueur(i); // On supprime un joueur si sa somme vaut 0
-        fin = finPartie(); // On vérifie qu'il reste des joueurs dans la partie
-        if(fin == 1)
-        {
-            break;
-        }
         cout << "C'est au tour du joueur : " << tab[i].getName() << endl;
         cout << "Voulez-vous parier ? (oui/non) : ";
         cin >> mot;
@@ -179,6 +178,7 @@ void Jeu :: decision(string mot, size_t i, size_t valeur)
         if(mot == "Quitter") // Le joueur quitte la partie
         {
             cout << "Le joueur " << tab[i].getName() << " a quitté la partie" << endl;
+            //cout << "JOUEUR QUI QUITTE : " << i << endl;
             tab.erase(tab.begin() + i);
             break;
         }
@@ -283,7 +283,9 @@ void Jeu :: singe()
 string Jeu :: IA() // fonction qui permet de choisir aléatoirement un singe/aucun à l'IA
 {
     srand((unsigned int)time(0));
-    int val = rand() % 6;
+    int val = 0;
+    val = (rand() % 5) + 1;
+    // cout << "valeur : " << val << endl;
     string word;
     switch(val)
     {
@@ -330,7 +332,7 @@ void Jeu :: ordinateurSinge()
     string word;
     word = IA();
     ordinateur -> parier(word); // L'IA choisit un singe aléatoirement
-
+    cout << "SINGE DE L IA :" << word << endl;
     valeur2 = ordinateur -> getSomme();
     valeur = rand() % valeur2;
     if(valeur == 0)
@@ -346,3 +348,4 @@ Joueur& Jeu :: getOrdinateur() const
 {
     return *ordinateur;
 }
+
